@@ -16,3 +16,7 @@
 #content {
   background-color: rebeccapurple;
 }
+.task-item {
+  display: flex;
+  gap: 1rem;
+}
