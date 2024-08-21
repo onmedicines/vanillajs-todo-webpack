@@ -96,9 +96,10 @@
 .task-item {
   padding: 1rem 2rem;
   display: flex;
+  flex-direction: column;
   gap: 0.25rem;
   gap: 1rem;
-  background-color: rgb(58, 57, 57);
+  background-color: rgb(53, 18, 87);
   color: white;
   width: 100%;
 
@@ -106,9 +107,13 @@
     font-size: 1.5rem;
     flex-grow: 1;
   }
+}
+.date-button-container {
+  display: flex;
+  justify-content: space-between;
   button {
     padding: 0.25rem 0.75rem;
-    font-size: 1.2rem;
+    font-size: 1rem;
     align-self: self-start;
   }
 }

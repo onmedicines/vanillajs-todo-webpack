@@ -25,13 +25,23 @@ export default class DOM {
       const para = this._doc.createElement("p");
       para.textContent = task.task;
 
+      const btnDiv = this._doc.createElement("div");
+      btnDiv.setAttribute("class", "date-button-container");
+
+      const datePara = this._doc.createElement("para");
+      datePara.textContent = task.date;
+      datePara.setAttribute("class", "date");
+
       const button = this._doc.createElement("button");
       button.textContent = "delete";
       button.setAttribute("class", "delete-task");
       button.setAttribute("id", task.id);
 
+      btnDiv.appendChild(datePara);
+      btnDiv.appendChild(button);
+
       div.appendChild(para);
-      div.appendChild(button);
+      div.appendChild(btnDiv);
 
       taskContainer.appendChild(div);
     });
