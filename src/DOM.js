@@ -14,11 +14,11 @@ export default class DOM {
 
     tasks.forEach((task) => {
       const div = this._doc.createElement("div");
-      div.setAttribute("id", task.uuid);
+      div.setAttribute("id", task.id);
       div.setAttribute("class", "task-item");
 
       const para = this._doc.createElement("p");
-      para.textContent = task.description;
+      para.textContent = task.task;
 
       const button = this._doc.createElement("button");
       button.textContent = "btn";
@@ -33,7 +33,7 @@ export default class DOM {
   }
 
   updateCategories(categories) {
-    function handleClick(e) {}
+    // function handleClick(e) {}
 
     const categoryContainer = this._doc.querySelector("#category-container");
     categoryContainer.innerHTML = "";
@@ -50,5 +50,9 @@ export default class DOM {
     this.resetInputs();
   }
 
-  init(isActive) {}
+  init(categories, defaultCategory) {
+    console.log(categories);
+    this.updateCategories(categories);
+    this.updateTasks(defaultCategory.tasks);
+  }
 }

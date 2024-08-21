@@ -19,19 +19,17 @@ export default class Category {
     return this._category.tasks;
   }
 
-  addTask(description) {
+  addTask(task) {
     const date = new Date();
     var month = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-    let today = `${date.getDate()} ${month[date.getMonth() - 1]}, ${date.getFullYear()}`;
+    let dateString = `${date.getDate()} ${month[date.getMonth() - 1]}, ${date.getFullYear()}`;
 
-    const uniqueID = crypto.randomUUID();
-
-    let newTask = { description: description, date: today, uuid: uniqueID, isCompleted: false };
+    let newTask = { task, date: dateString, id: crypto.randomUUID(), isCompleted: false };
     this._category.tasks.push(newTask);
   }
 
-  removeTask(uuid) {
-    let newTasks = this._category.tasks.filter((task) => task.uuid !== uuid);
+  removeTask(id) {
+    let newTasks = this._category.tasks.filter((task) => task.id !== id);
     this._category.tasks = newTasks;
   }
 }
