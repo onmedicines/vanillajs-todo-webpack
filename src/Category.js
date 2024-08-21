@@ -7,6 +7,10 @@ export default class Category {
     return this._category;
   }
 
+  get id() {
+    return this._category.id;
+  }
+
   get name() {
     return this._category.name;
   }

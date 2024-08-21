@@ -41,11 +41,14 @@ export default class DOM {
     categories.forEach((category, index) => {
       const para = this._doc.createElement("p");
       para.textContent = category.name;
-      para.setAttribute("id", index);
+      para.setAttribute("id", category.id);
+      para.setAttribute("class", "category-item");
 
       categoryContainer.appendChild(para);
     });
 
     this.resetInputs();
   }
+
+  init(isActive) {}
 }
