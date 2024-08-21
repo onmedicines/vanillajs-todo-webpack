@@ -5,9 +5,9 @@ import Catgeories from "./Categories";
 const UI = (function (doc) {
   const dom = new DOM(doc);
   const categories = new Catgeories();
-  let isActive = categories.list[0];
+  let currentlyDisplayedCategory = categories.list[0];
 
-  dom.init(categories.list, isActive);
+  dom.init(categories.list, currentlyDisplayedCategory);
 
   // DOM elements
   const newCategoryContainer = doc.querySelector("#new-category-container");
@@ -15,27 +15,33 @@ const UI = (function (doc) {
   const newTaskContainer = doc.querySelector("#new-task-container");
   const taskContainer = doc.querySelector("#task-container");
 
+  // add a new category of tasks eg. MyDay, Important, Tomorrow
   newCategoryContainer.querySelector("button").addEventListener("click", (e) => {
     const { value } = newCategoryContainer.querySelector("input");
-    categories.addCategory(value);
-    dom.updateCategories(categories.list);
+    if (value) {
+      categories.addCategory(value);
+      dom.updateCategories(categories.list);
+    }
   });
 
+  // display the tasks of the clicked category
   categoryContainer.addEventListener("click", (categoryPara) => {
-    isActive = categories.getCategory(categoryPara.target.id);
-    dom.updateTasks(isActive.tasks);
+    currentlyDisplayedCategory = categories.getCategory(categoryPara.target.id);
+    dom.updateTasks(currentlyDisplayedCategory.tasks);
   });
 
+  // add new task into the currently clicked category
   newTaskContainer.querySelector("button").addEventListener("click", (e) => {
     const { value } = newTaskContainer.querySelector("input");
-    isActive.addTask(value);
-    dom.updateTasks(isActive.tasks);
+    currentlyDisplayedCategory.addTask(value);
+    dom.updateTasks(currentlyDisplayedCategory.tasks);
   });
 
+  // delete task from the currently displayed category
   taskContainer.addEventListener("click", (deleteButton) => {
     if (deleteButton.target.classList.contains("delete-task")) {
-      categories.getCategory(isActive.id).removeTask(deleteButton.target.id);
-      dom.updateTasks(isActive.tasks);
+      categories.getCategory(currentlyDisplayedCategory.id).removeTask(deleteButton.target.id);
+      dom.updateTasks(currentlyDisplayedCategory.tasks);
     }
   });
 })(document);
