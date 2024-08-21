@@ -21,6 +21,10 @@ export default class Catgeories {
     this._categories.push(new Category(categoryName));
   }
 
+  removeCategory(categoryID) {
+    this._categories = this._categories.filter((category) => category.id !== categoryID);
+  }
+
   getTasksFromCategory(categoryID) {
     return this.#findCategoryWithID(categoryID).tasks;
   }

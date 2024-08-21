@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   border: none;
+  outline: none;
   box-sizing: border-box;
 }
 #container {
@@ -9,24 +10,105 @@
   width: 100vw;
 
   display: grid;
-  grid-template-columns: 1fr 3fr;
+  grid-template-columns: 1fr 4fr;
 }
 #sidebar {
-  padding: 1rem;
+  padding: 2rem;
   background-color: steelblue;
+
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+
+  h1 {
+    color: white;
+  }
 }
 #new-category-container {
   display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
   button,
   input {
-    padding: 0.25rem 0.5rem;
+    padding: 0.75rem 1.25rem;
     font-size: 1.2rem;
   }
+  input {
+    flex-grow: 1;
+  }
 }
+#category-container {
+  font-size: 1.5rem;
+  color: white;
+
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+#category-container {
+  p {
+    padding: 1rem 2rem;
+    background-color: rgb(41, 77, 105);
+  }
+  p::before {
+    content: "# ";
+  }
+}
+
 #content {
+  padding: 2rem calc(5rem + 10vw);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+
   background-color: rebeccapurple;
+
+  h1 {
+    color: white;
+    text-align: center;
+    padding-bottom: 1rem;
+    font-size: 2.5rem;
+  }
+}
+#new-task-container {
+  width: 100%;
+  display: flex;
+  gap: 0.25rem;
+
+  input,
+  button {
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+  }
+  button {
+  }
+  input {
+    flex-grow: 1;
+  }
+}
+#task-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
 }
 .task-item {
+  padding: 1rem 2rem;
   display: flex;
+  gap: 0.25rem;
   gap: 1rem;
+  background-color: rgb(58, 57, 57);
+  color: white;
+  width: 100%;
+
+  p {
+    font-size: 1.5rem;
+    flex-grow: 1;
+  }
+  button {
+    padding: 0.25rem 0.75rem;
+    font-size: 1.2rem;
+    align-self: self-start;
+  }
 }

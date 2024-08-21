@@ -3,16 +3,22 @@ export default class DOM {
     this._doc = doc;
   }
 
-  resetInputs() {
+  #resetInputs() {
     const inputs = this._doc.querySelectorAll("input");
     inputs.forEach((input) => (input.value = ""));
   }
 
-  updateTasks(tasks) {
+  #updateContentHeading(text) {
+    const contentHeading = this._doc.querySelector("#content h1");
+    contentHeading.textContent = text;
+  }
+
+  updateTasks(category) {
     const taskContainer = this._doc.querySelector("#task-container");
     taskContainer.innerHTML = "";
 
-    tasks.forEach((task) => {
+    this.#updateContentHeading(category.name);
+    category.tasks.forEach((task) => {
       const div = this._doc.createElement("div");
       div.setAttribute("class", "task-item");
 
@@ -24,22 +30,22 @@ export default class DOM {
       button.setAttribute("class", "delete-task");
       button.setAttribute("id", task.id);
 
-      div.appendChild(button);
       div.appendChild(para);
+      div.appendChild(button);
 
       taskContainer.appendChild(div);
     });
 
-    this.resetInputs();
+    this.#resetInputs();
   }
 
   updateCategories(categories) {
-    // function handleClick(e) {}
+    console.log(categories);
 
     const categoryContainer = this._doc.querySelector("#category-container");
     categoryContainer.innerHTML = "";
 
-    categories.forEach((category, index) => {
+    categories.list.forEach((category, index) => {
       const para = this._doc.createElement("p");
       para.textContent = category.name;
       para.setAttribute("id", category.id);
@@ -48,12 +54,11 @@ export default class DOM {
       categoryContainer.appendChild(para);
     });
 
-    this.resetInputs();
+    this.#resetInputs();
   }
 
-  init(categories, defaultCategory) {
-    console.log(categories);
+  init(categories, currentlyDisplayedCategory) {
+    this.updateTasks(currentlyDisplayedCategory);
     this.updateCategories(categories);
-    this.updateTasks(defaultCategory.tasks);
   }
 }
