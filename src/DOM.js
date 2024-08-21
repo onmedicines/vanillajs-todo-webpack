@@ -14,14 +14,15 @@ export default class DOM {
 
     tasks.forEach((task) => {
       const div = this._doc.createElement("div");
-      div.setAttribute("id", task.id);
       div.setAttribute("class", "task-item");
 
       const para = this._doc.createElement("p");
       para.textContent = task.task;
 
       const button = this._doc.createElement("button");
-      button.textContent = "btn";
+      button.textContent = "delete";
+      button.setAttribute("class", "delete-task");
+      button.setAttribute("id", task.id);
 
       div.appendChild(button);
       div.appendChild(para);

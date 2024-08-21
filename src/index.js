@@ -9,9 +9,11 @@ const UI = (function (doc) {
 
   dom.init(categories.list, isActive);
 
+  // DOM elements
   const newCategoryContainer = doc.querySelector("#new-category-container");
   const categoryContainer = doc.querySelector("#category-container");
   const newTaskContainer = doc.querySelector("#new-task-container");
+  const taskContainer = doc.querySelector("#task-container");
 
   newCategoryContainer.querySelector("button").addEventListener("click", (e) => {
     const { value } = newCategoryContainer.querySelector("input");
@@ -19,8 +21,8 @@ const UI = (function (doc) {
     dom.updateCategories(categories.list);
   });
 
-  categoryContainer.addEventListener("click", (e) => {
-    isActive = categories.getCategory(e.target.id);
+  categoryContainer.addEventListener("click", (categoryPara) => {
+    isActive = categories.getCategory(categoryPara.target.id);
     dom.updateTasks(isActive.tasks);
   });
 
@@ -28,5 +30,12 @@ const UI = (function (doc) {
     const { value } = newTaskContainer.querySelector("input");
     isActive.addTask(value);
     dom.updateTasks(isActive.tasks);
+  });
+
+  taskContainer.addEventListener("click", (deleteButton) => {
+    if (deleteButton.target.classList.contains("delete-task")) {
+      categories.getCategory(isActive.id).removeTask(deleteButton.target.id);
+      dom.updateTasks(isActive.tasks);
+    }
   });
 })(document);
